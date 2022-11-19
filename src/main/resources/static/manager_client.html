@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>公司销售管理系统</title>
+
+    <!--     引入样式-->
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+
+<div id="app1" style="margin: 40px auto">
+    <template>
+        <el-page-header @back="goBack" :content="content">
+        </el-page-header>
+        <br/>
+        <el-table
+                :data="tableData"
+                style="width: 100%"
+                :default-sort="{prop: 'date', order: 'descending'}"
+        >
+            <el-table-column type="index"
+                             width="80">
+            </el-table-column>
+            <el-table-column
+                    prop="user_id"
+                    label="客户ID"
+                    sortable
+                    width="210"
+                    header-align="center" align="center">
+            </el-table-column>
+            <el-table-column
+                    prop="user_name"
+                    label="姓名"
+                    sortable
+                    width="210"
+                    header-align="center" align="center">
+            </el-table-column>
+            <el-table-column
+                    prop="user_phone"
+                    label="电话"
+                    sortable
+                    width="210"
+                    header-align="center" align="center">
+            </el-table-column>
+            <el-table-column
+                    prop="user_address"
+                    label="收货地址"
+                    sortable
+                    width="210"
+                    header-align="center" align="center">
+            </el-table-column>
+        </el-table>
+    </template>
+
+</div>
+
+<script src="js/jquery-3.3.1.js"></script>
+<script src="js/getParameter.js"></script>
+<script src="js/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="js/index.js"></script>
+<script src="js/axios-0.18.0.js"></script>
+
+<script>
+    new Vue({
+        el: "#app1",
+        data: {
+            content: "{{}}服务的客户"
+            ,
+            tableData: [{
+                date: '2016-05-02',
+                user_name: '王小虎',
+                address: '上海市普陀区金沙江路 1518 弄'
+            }, {
+                date: '2016-05-04',
+                user_name: '王小虎',
+                address: '上海市普陀区金沙江路 1517 弄'
+            }, {
+                date: '2016-05-01',
+                user_name: '王小虎',
+                address: '上海市普陀区金沙江路 1519 弄'
+            }, {
+                date: '2016-05-03',
+                user_name: '王小虎',
+                address: '上海市普陀区金沙江路 1516 弄'
+            }]
+        },
+        mounted() {
+            var id = sessionStorage.getItem("sale_id");
+            var this_ = this
+
+            axios.get("/users/" + id).then((res) => {
+                if (res.data.code === 20041) {
+                    this_.tableData = res.data.data;
+                } else if (res.data.code === 20040) {
+                    alert("客户查找失败！！！")
+                }
+            })
+            var sale_name = sessionStorage.getItem("sale_name");
+            // alert(sale_name)
+            // alert(sale_name)
+            this.content = sale_name + "管理的客户";
+        },
+        methods: {
+            goBack() {
+                // console.log('go back');
+
+                $("#right_content").load("manager_salesman_son.html");
+            },
+            formatter(row, column) {
+                return row.address;
+            }
+            // view_orderDetail(order_id) {
+            //     // alert(order_id)
+            //     sessionStorage.setItem("order_id",order_id);
+            //     $("#right_content").load("order_detail.html");
+            // }
+        }
+    })
+</script>
+</body>
+</html>

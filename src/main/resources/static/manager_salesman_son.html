@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Title</title>
+</head>
+
+<body>
+<div id="app" style="margin: 40px auto;overflow-y: scroll">
+    <template>
+        <!--        <el-button @click="resetDateFilter">清除日期过滤器</el-button>-->
+        <!--        <el-button @click="clearFilter">清除所有过滤器</el-button>-->
+        <el-table ref="filterTable" :data="tableData" style="width: 100%">
+
+            <el-table-column type="index" width="50" header-align="center" header-align="center" align="center">
+            </el-table-column>
+            <el-table-column prop="sale_name" label="姓名" width="170" header-align="center" align="center">
+            </el-table-column>
+            <el-table-column prop="sale_id" sortable label="工号" width="170" header-align="center" align="center">
+            </el-table-column>
+            <el-table-column prop="sale_sex" sortable label="性别" width="100" header-align="center" align="center">
+            </el-table-column>
+            <el-table-column prop="sale_phone" sortable label="电话" width="170" header-align="center" align="center">
+            </el-table-column>
+
+            <el-table-column prop="mana_ord" label="管理订单" width="170" header-align="center" align="center">
+                <template slot-scope="scope">
+                    <el-button type="info" round plain @click="view_orderDetails(scope.row)" size="medium">查看详情
+                    </el-button>
+                </template>
+            </el-table-column>
+            <el-table-column prop="mana_ges" label="管理客户" width="170" header-align="center" align="center">
+                <template slot-scope="scope">
+                    <el-button type="info" round plain @click="view_clientDetails(scope.row)" size="medium">查看详情
+                    </el-button>
+                </template>
+            </el-table-column>
+            <el-table-column label="操作" width="190" header-align="center" align="center">
+                <template slot-scope="scope">
+                    <el-button
+                            size="mini"
+                            @click="handleEdit(scope.$index, scope.row)">编辑
+                    </el-button>
+                    <el-button
+                            size="mini"
+                            type="danger"
+                            @click="handleDelete(scope.$index, scope.row)">删除
+                    </el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+
+        <!--            修改销售的对话框-->
+        <el-dialog
+                title="修改销售信息"
+                :visible.sync="editDialogVisible"
+                width="30%"
+                append-to-body
+        >
+            <!--            先不定规则-->
+            <!--            <el-form :model="eachSalesForm" :rules="eachSalesFormRules" ref="eachSalesFormRef" label-width="70px">-->
+            <el-form :model="eachSalesForm" label-width="70px">
+                <el-form-item label="姓名" prop="sale_name">
+                    <el-input v-model="eachSalesForm.sale_name" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="用户名" prop="sale_username">
+                    <el-input v-model="eachSalesForm.sale_username"></el-input>
+                </el-form-item>
+                <el-form-item label="工号" prop="sale_id">
+                    <el-input v-model="eachSalesForm.sale_id" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="性别" prop="sale_sex">
+                    <el-input v-model="eachSalesForm.sale_sex"></el-input>
+                </el-form-item>
+                <el-form-item label="电话" prop="sale_phone">
+                    <el-input v-model="eachSalesForm.sale_phone"></el-input>
+                </el-form-item>
+                <el-form-item label="密码" prop="sale_password">
+                    <el-input v-model="eachSalesForm.sale_password"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="editDialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="editSalesman">确 定</el-button>
+            </span>
+        </el-dialog>
+
+        <br/>
+        <!--        页码-->
+        <el-pagination background layout="prev, pager, next" @current-change="handleCurrentChange"
+                       :total="totalCount">
+        </el-pagination>
+    </template>
+</div>
+<script src="js/jquery-3.3.1.js"></script>
+<script src="js/getParameter.js"></script>
+<script src="js/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="js/index.js"></script>
+<script src="js/axios-0.18.0.js"></script>
+
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            // tableData: [],
+            totalCount: 400,
+            currentPage: 1,
+            tableData: [{
+                sale_name: '王小虎',
+                sale_id: '123456',
+                sale_sex: '男',
+                sale_phone: '12345678901',
+                mana_ord: '点我查看',
+                mana_ges: '点我查看',
+                // address: '上海市普陀区金沙江路 1518 弄',
+                // tag: '家'
+            }, {
+                name: '王小虎',
+                sale_id: '124456',
+                sex: '男',
+                phone: '12345678901',
+                mana_ord: '点我查看',
+                mana_ges: '点我查看',
+                // address: '上海市普陀区金沙江路 1518 弄',
+                // tag: '公司'
+            }, {
+                sale_name: '王小虎',
+                sale_id: '234456',
+                sex: '男',
+                phone: '12345678901',
+                mana_ord: '点我查看',
+                mana_ges: '点我查看',
+                // address: '上海市普陀区金沙江路 1518 弄',
+                // tag: '家'
+            }, {
+                sale_name: '王小虎',
+                sale_id: '234456',
+                sex: '男',
+                phone: '12345678901',
+                mana_ord: '点我查看',
+                mana_ges: '点我查看',
+                // address: '上海市普陀区金沙江路 1518 弄',
+                // tag: '家'
+            }, {
+                sale_name: '王小虎',
+                sale_id: '234456',
+                sex: '男',
+                phone: '12345678901',
+                mana_ord: '点我查看',
+                mana_ges: '点我查看',
+                // address: '上海市普陀区金沙江路 1518 弄',
+                // tag: '家'
+            }, {
+                sale_name: '王小虎',
+                sale_id: '234456',
+                sex: '男',
+                phone: '12345678901',
+                mana_ord: '点我查看',
+                mana_ges: '点我查看',
+                // address: '上海市普陀区金沙江路 1518 弄',
+                // tag: '家'
+            }, {
+                sale_name: '王小虎',
+                sale_id: '234456',
+                sex: '男',
+                phone: '12345678901',
+                mana_ord: '点我查看',
+                mana_ges: '点我查看',
+                // address: '上海市普陀区金沙江路 1518 弄',
+                // tag: '家'
+            }, {
+                sale_name: '王小虎',
+                sale_id: '234456',
+                sex: '男',
+                phone: '12345678901',
+                mana_ord: '点我查看',
+                mana_ges: '点我查看',
+                // address: '上海市普陀区金沙江路 1518 弄',
+                // tag: '家'
+            }, {
+                sale_name: '王小虎',
+                sale_id: '234456',
+                sex: '男',
+                phone: '12345678901',
+                mana_ord: '点我查看',
+                mana_ges: '点我查看',
+                // address: '上海市普陀区金沙江路 1518 弄',
+                // tag: '家'
+            }, {
+                sale_name: '王小虎',
+                sale_id: '234456',
+                sex: '男',
+                phone: '12345678901',
+                mana_ord: '点我查看',
+                mana_ges: '点我查看',
+                // address: '上海市普陀区金沙江路 1518 弄',
+                // tag: '家'
+            }, {
+                sale_name: '王小虎',
+                sale_id: '234456',
+                sex: '男',
+                phone: '12345678901',
+                mana_ord: '点我查看',
+                mana_ges: '点我查看',
+                // address: '上海市普陀区金沙江路 1518 弄',
+                // tag: '家'
+            }, {
+                name: '王小虎',
+                sale_id: '563546',
+                sex: '男',
+                phone: '12345678901',
+                mana_ord: '点我查看',
+                mana_ges: '点我查看',
+                // address: '上海市普陀区金沙江路 1518 弄',
+                // tag: '公司'
+            }],
+            //控制修改用户对话框的现实与隐藏
+            editDialogVisible: false,
+            eachSalesForm: {
+                sale_name: '王小虎',
+                sale_id: '123456',
+                sale_sex: '男',
+                sale_phone: '12345678901',
+                sale_password: '',
+                sale_username: ''
+            },
+            //修改表单的验证规则对象
+            eachSalesFormRules: {},
+            allInfo: [{
+                sale_password: '',
+                sale_username: ''
+            }]
+
+        },
+        mounted() {
+            var this_ = this
+            // 页面加载完成，发送异步请求
+            axios.get("/managers").then((res) => {
+                if (res.data.code === 20041) {
+                    this_.totalCount = res.data.data;
+                }
+            })
+
+            this.selectSalesman(1);
+
+        },
+        methods: {
+            selectSalesman(page) {
+                this.currentPage = page;
+                var start = (page - 1) * 10;
+                // alert(start)
+                var this_ = this
+                axios.get("/managers/" + page).then((res) => {
+                    if (res.data.code === 20041) {
+                        this_.tableData = res.data.data;
+                        this_.allInfo = res.data.data;
+
+                    }
+                })
+            },
+            // resetDateFilter() {
+            //     this.$refs.filterTable.clearFilter('date');
+            // },
+            clearFilter() {
+                this.$refs.filterTable.clearFilter();
+            },
+            // formatter(row, column) {
+            //     return row.address;
+            // },
+            // filterTag(value, row) {
+            //     return row.tag === value;
+            // },
+            // filterHandler(value, row, column) {
+            //     const property = column['property'];
+            //     return row[property] === value;
+            // },
+            handleCurrentChange(val) {
+                // console.log(`当前页: ${val}`);
+                // this.currentPage = val;
+                this.selectSalesman(val);
+            },
+            view_orderDetails(row) {
+                // console.log(row);
+                sessionStorage.setItem("sale_name", row.sale_name)
+                sessionStorage.setItem("sale_id", row.sale_id)
+                $("#right_content").load("manager_order.html");
+            },
+            view_clientDetails(row) {
+                // console.log(row);
+                sessionStorage.setItem("sale_name", row.sale_name)
+                sessionStorage.setItem("sale_id", row.sale_id)
+                $("#right_content").load("manager_client.html");
+            },
+            handleEdit(index, row) {
+                // var querySelector = document.querySelector(".el-dialog__wrapper");
+                // querySelector.style.backgroundColor = "rgba(128,128,128,.5)";
+
+                this.eachSalesForm.sale_password = this.allInfo[index].sale_password;
+                this.eachSalesForm.sale_username = this.allInfo[index].sale_username;
+
+                this.editDialogVisible = true;
+                this.eachSalesForm.sale_name = row.sale_name;
+                this.eachSalesForm.sale_id = row.sale_id;
+                this.eachSalesForm.sale_sex = row.sale_sex;
+                this.eachSalesForm.sale_phone = row.sale_phone;
+                console.log(index, row);
+            },
+            handleDelete(index, row) {
+                console.log(index, row);
+            },
+            //修改提交
+            editSalesman() {
+                var this_ = this;
+                axios.put("/managers", this_.eachSalesForm).then((res) => {
+                    if (res.data.code === 20031) {
+                        this_.editDialogVisible = false;
+                        this.selectSalesman(this.currentPage);
+                        // this_.tableData = res.data.data;
+                    } else {
+                        alert("修改失败！！！");
+                    }
+                })
+            }
+        }
+    })
+</script>
+</body>
+
+</html>
+
