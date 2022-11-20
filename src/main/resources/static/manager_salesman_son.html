@@ -255,7 +255,7 @@
                 var start = (page - 1) * 10;
                 // alert(start)
                 var this_ = this
-                axios.get("/managers/" + page).then((res) => {
+                axios.get("/managers/" + start).then((res) => {
                     if (res.data.code === 20041) {
                         this_.tableData = res.data.data;
                         this_.allInfo = res.data.data;
@@ -288,17 +288,15 @@
                 // console.log(row);
                 sessionStorage.setItem("sale_name", row.sale_name)
                 sessionStorage.setItem("sale_id", row.sale_id)
-                $("#right_content").load("manager_order.html");
+                $("#right_content").load("manager_saleId_order.html");
             },
             view_clientDetails(row) {
                 // console.log(row);
                 sessionStorage.setItem("sale_name", row.sale_name)
                 sessionStorage.setItem("sale_id", row.sale_id)
-                $("#right_content").load("manager_client.html");
+                $("#right_content").load("manager_saleId_client.html");
             },
             handleEdit(index, row) {
-                // var querySelector = document.querySelector(".el-dialog__wrapper");
-                // querySelector.style.backgroundColor = "rgba(128,128,128,.5)";
 
                 this.eachSalesForm.sale_password = this.allInfo[index].sale_password;
                 this.eachSalesForm.sale_username = this.allInfo[index].sale_username;

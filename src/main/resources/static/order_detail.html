@@ -182,17 +182,6 @@
             }]
         },
         mounted() {
-            // $.ajax({
-            //     url: "/Goods/queryGoodsByOrder_id",
-            //     data: {sale_id:id},
-            //     type: "get",
-            //     // async: false,//这里这里，要用同步请求
-            //     async: false,
-            //     dataType: "json",
-            //     success: function (obj) {
-            //         this_.tableData = obj;
-            //     }
-            // })
             var id = sessionStorage.getItem("order_id");
             this.order_id = id;
             var this_ = this;
@@ -216,8 +205,7 @@
                 return row.address;
             },
             goBack() {
-                // console.log('go back');
-                $("#right_content").load("manager_order.html");
+                $("#right_content").load("manager_saleId_order.html");
             },
             headFirst({row, column, rowIndex, columnIndex}) {
                 // alert("rowIndex="+rowIndex);

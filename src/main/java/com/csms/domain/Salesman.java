@@ -6,7 +6,7 @@ public class Salesman {
     String sale_username;
     String sale_password;
     String sale_sex;
-    int sale_phone;
+    String sale_phone;
 
     public Salesman() {
     }
@@ -43,11 +43,11 @@ public class Salesman {
         this.sale_password = sale_password;
     }
 
-    public int getSale_phone() {
+    public String getSale_phone() {
         return sale_phone;
     }
 
-    public void setSale_phone(int sale_phone) {
+    public void setSale_phone(String sale_phone) {
         this.sale_phone = sale_phone;
     }
 

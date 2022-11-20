@@ -4,9 +4,27 @@ public class User {
     String user_id;
     String sale_id;
     String user_name;
+    String user_username;
     String user_password;
     String user_address;
-    int user_phone;
+    String user_sex;
+    String user_phone;
+
+    public String getUser_username() {
+        return user_username;
+    }
+
+    public void setUser_username(String user_username) {
+        this.user_username = user_username;
+    }
+
+    public String getUser_sex() {
+        return user_sex;
+    }
+
+    public void setUser_sex(String user_sex) {
+        this.user_sex = user_sex;
+    }
 
     public String getSale_id() {
         return sale_id;
@@ -48,11 +66,11 @@ public class User {
         this.user_address = user_address;
     }
 
-    public int getUser_phone() {
+    public String getUser_phone() {
         return user_phone;
     }
 
-    public void setUser_phone(int user_phone) {
+    public void setUser_phone(String user_phone) {
         this.user_phone = user_phone;
     }
 
@@ -62,8 +80,10 @@ public class User {
                 "user_id='" + user_id + '\'' +
                 ", sale_id='" + sale_id + '\'' +
                 ", user_name='" + user_name + '\'' +
+                ", user_username='" + user_username + '\'' +
                 ", user_password='" + user_password + '\'' +
                 ", user_address='" + user_address + '\'' +
+                ", user_sex='" + user_sex + '\'' +
                 ", user_phone=" + user_phone +
                 '}';
     }

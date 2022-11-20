@@ -1,15 +1,12 @@
 package com.csms.domain;
 
-public class OrderBySalesman {
+public class Order {
     String order_id;
     String order_time;
     String order_state;
     Float order_total;
     String sale_id;
     String user_id;
-
-    public OrderBySalesman() {
-    }
 
     public String getOrder_id() {
         return order_id;

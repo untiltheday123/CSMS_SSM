@@ -29,5 +29,5 @@ public interface ManagerDao {
     List<Salesman> querySalesmanByPage(@Param("startPage") int startPage);
 
     @Update("update salesman set sale_username=#{su},sale_password=#{sp},sale_phone=#{spo},sale_sex=#{ss} where sale_id=#{si}")
-    int updateSalesman(@Param("su") String su,@Param("sp") String sp,@Param("spo") int spo,@Param("ss") String ss,@Param("si") String si);
+    int updateSalesman(@Param("su") String su,@Param("sp") String sp,@Param("spo") String spo,@Param("ss") String ss,@Param("si") String si);
 }

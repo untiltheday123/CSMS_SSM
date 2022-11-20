@@ -24,10 +24,10 @@ public interface ManagerService {
 
     /**
      * 分页查询
-     * @param StartPage
+     * @param startPage
      * @return
      */
-    List<Salesman> querySalesmanByPage(int StartPage);
+    List<Salesman> querySalesmanByPage(int startPage);
 
 
     /**
