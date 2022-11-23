@@ -110,10 +110,11 @@ public class LoginController {
 //        管理员
         if(type==1) {
             flag = managerService.mana_login(username, password);
+            return new Result(flag ? Code.GET_OK:Code.GET_ERR,flag);
         }else{
-            flag = salesmanService.sale_login(username, password);
+            String sale_id = salesmanService.sale_login(username, password);
+            return new Result(!"".equals(sale_id) ? Code.GET_OK:Code.GET_ERR,sale_id);
         }
-        return new Result(flag ? Code.GET_OK:Code.GET_ERR,flag);
     }
 }
 

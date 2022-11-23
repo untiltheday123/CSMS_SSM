@@ -15,15 +15,21 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public List<User> queryUserBySaleId(String sale_id) {
+    public List<User> queryUserBySaleIdAndPage(String sale_id,int startPage) {
 
-        return userDao.queryUserBySaleId(sale_id);
+        return userDao.queryUserBySaleIdAndPage(sale_id,startPage);
     }
 
     @Override
     public int queryUser() {
         return userDao.queryUser();
     }
+
+    @Override
+    public int queryUserBySaleId(String sale_id){
+        return userDao.queryUserBySaleId(sale_id);
+    }
+
 
     @Override
     public List<User> queryUserByPage(int startPage) {

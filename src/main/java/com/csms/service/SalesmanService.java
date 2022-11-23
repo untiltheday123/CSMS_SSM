@@ -13,7 +13,7 @@ public interface SalesmanService {
      * @param userpwd
      * @return
      */
-    Boolean sale_login(String username, String userpwd);
+    String sale_login(String username, String userpwd);
 //
 //    int querySalesman();
 //

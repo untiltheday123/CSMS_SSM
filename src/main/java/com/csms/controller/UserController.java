@@ -15,15 +15,20 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/{sale_id}")
-    public Result queryUserBySaleId(@PathVariable String sale_id){
-        List<User> users = userService.queryUserBySaleId(sale_id);
-        return new Result(users != null ? Code.GET_OK : Code.GET_ERR,users);
-    }
+//    /**
+//     * 根据sale_id查询客户
+//     * @param sale_id
+//     * @return
+//     */
+//    @GetMapping("/{sale_id}")
+//    public Result queryUserBySaleId(@PathVariable String sale_id){
+//        List<User> users = userService.queryUserBySaleId(sale_id);
+//        return new Result(users != null ? Code.GET_OK : Code.GET_ERR,users);
+//    }
 
 //    方法名不够了
-    @GetMapping("/{startPage}/{ccc}")
-    public Result queryUserByPage(@PathVariable int startPage,@PathVariable String ccc){
+    @GetMapping("/{startPage}")
+    public Result queryUserByPage(@PathVariable int startPage){
         List<User> users = userService.queryUserByPage(startPage);
         return new Result(users != null ? Code.GET_OK : Code.GET_ERR,users);
     }

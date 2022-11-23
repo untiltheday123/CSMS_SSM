@@ -13,8 +13,8 @@ import org.apache.ibatis.annotations.Select;
 public interface SalesmanDao {
 
 
-    @Select("select count(*) from salesman where sale_username = #{username} and sale_password = #{userpwd}")
-    int selectUserByUsernameAndUserPwd(@Param("username") String username, @Param("userpwd") String userpwd);
+    @Select("select sale_id from salesman where sale_username = #{username} and sale_password = #{userpwd}")
+    String selectUserByUsernameAndUserPwd(@Param("username") String username, @Param("userpwd") String userpwd);
 //
 //    int querySalesman();
 //

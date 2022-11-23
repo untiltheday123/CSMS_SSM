@@ -2,20 +2,27 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>公司销售管理系统</title>
 
     <!-- favicon -->
-    <link rel="icon" href="assets/img/favicon.png" sizes="16x16" type="image/png" />
+    <link rel="icon" href="assets/img/favicon.png" sizes="16x16" type="image/png"/>
 
     <!-- Stylesheet Link -->
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/style.css"/>
 
     <!-- 引入样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!--    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">-->
+    <!--    swiper-->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/index_lunbo.css">
+
+
 </head>
 
+<!--<body>-->
 <body class="t-bg-primary mx-sidenav-not-collapsed">
 
 <div class="container-fluid p-0">
@@ -29,17 +36,10 @@
             <div class="mx-sidenav__content t-bg-primary">
                 <!-- Side Nav Brand  -->
                 <div class="mx-sidenav__brand">
-                    <a href="index.html" class="mx-sidenav__logo t-link sale">
+                    <a href="index_sale.html" class="mx-sidenav__logo t-link sale">
                         <!-- <img src="assets/img/logo-w.png" alt="Adminage" class="img-fluid mx-sidenav__logo-is"> -->
                         销售员
                     </a>
-                    <a href="index.html" class="t-link mx-sidenav__logo-sm">
-                        <img src="assets/img/logo-w-sm.png" alt="Adminage" class="img-fluid mx-sidenav__logo-sm-is">
-                        <!-- 销售员 -->
-                    </a>
-                    <!-- <div class="sale">
-                        销售员
-                    </div> -->
                 </div>
                 <!-- Side Nav Brand  End-->
                 <!-- 左边框 -->
@@ -47,49 +47,37 @@
                     <nav class="mx-sidenav__menu">
                         <ul class="t-list mx-sidenav__menu-is">
                             <li class="mx-sidenav__menu-item active-page">
-                                <a href="index.html" class="mx-sidenav__menu-link">
-                                        <span class="mx-sidenav__menu-icon t-mr-15">
-                                            <span class='bx bx-category'></span>
-                                        </span>
+                                <a href="index_sale.html" class="mx-sidenav__menu-link">
+                                    <span class="mx-sidenav__menu-icon t-mr-15">
+                                        <span class='bx bx-category'></span>
+                                    </span>
                                     <span class="mx-sidenav__menu-text text-capitalize">
-                                            dashboard
-                                        </span>
+                                        主页
+                                    </span>
                                 </a>
-                            </li>
-                            <li class="mx-sidenav__menu-item mx-sidenav__has-sub">
-                                <a href="#" class="mx-sidenav__menu-link">
-                                        <span class="mx-sidenav__menu-icon t-mr-15">
-                                            <span class='bx bx-user-circle'></span>
-                                        </span>
-                                        <span class="mx-sidenav__menu-text text-capitalize">
-                                            客户信息管理
-                                        </span>
-                                </a>
-<!--                                <ul class="t-list mx-sidenav__sub mx-sidenav__sub&#45;&#45;hide">-->
-<!--                                    <li class="mx-sidenav__sub-item">-->
-<!--                                        <a href="user.html" class="mx-sidenav__sub-link">-->
-<!--                                                <span class="mx-sidenav__sub-icon t-mr-15">-->
-<!--                                                    <i class='bx bxs-user-plus'></i>-->
-<!--                                                </span>-->
-<!--                                            <span class="mx-sidenav__sub-text text-capitalize">-->
-<!--                                                    客户信息管理-->
-<!--                                                </span>-->
-<!--                                        </a>-->
-<!--                                    </li>-->
-<!--                                    <li class="mx-sidenav__sub-item">-->
-<!--                                        <a href="user-list.html" class="mx-sidenav__sub-link ">-->
-<!--                                                <span class="mx-sidenav__sub-icon t-mr-15">-->
-<!--                                                    <i class='bx bxs-user-detail'></i>-->
-<!--                                                </span>-->
-<!--                                            <span class="mx-sidenav__sub-text text-capitalize">-->
-<!--                                                    user list-->
-<!--                                                </span>-->
-<!--                                        </a>-->
-<!--                                    </li>-->
-<!--                                </ul>-->
                             </li>
                             <li class="mx-sidenav__menu-item">
-                                <a href="profile.html" class="mx-sidenav__menu-link">
+                                <a href="sale_client.html" class="mx-sidenav__menu-link">
+                                    <span class="mx-sidenav__menu-icon t-mr-15">
+                                        <i class='bx bxs-user-account'></i>
+                                    </span>
+                                    <span class="mx-sidenav__menu-text text-capitalize">
+                                        客户信息管理
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="mx-sidenav__menu-item">
+                                <a href="sale_order.html" class="mx-sidenav__menu-link">
+                                        <span class="mx-sidenav__menu-icon t-mr-15">
+                                            <i class='bx bxs-user-account'></i>
+                                        </span>
+                                    <span class="mx-sidenav__menu-text text-capitalize">
+                                            订单信息管理
+                                        </span>
+                                </a>
+                            </li>
+                            <li class="mx-sidenav__menu-item">
+                                <a href="" class="mx-sidenav__menu-link">
                                         <span class="mx-sidenav__menu-icon t-mr-15">
                                             <i class='bx bxs-user-account'></i>
                                         </span>
@@ -176,7 +164,7 @@
                                                                     <div class="d-flex align-items-center">
                                                                             <span class="mx-user mx-user--sm">
                                                                                 <img src="assets/img/user.jpg" alt="max"
-                                                                                     class="img-fluid w-100" />
+                                                                                     class="img-fluid w-100"/>
                                                                             </span>
                                                                         <span
                                                                                 class="d-none d-lg-inline-block t-ml-8">
@@ -300,22 +288,55 @@
 
                             <!-- 右边盒子内容 -->
                             <div class="mx-body__content" data-simplebar>
-                                <div id="app">
-                                    <div class="table" style="margin:20px">
-                                        <template>
-                                            <el-table :data="tableData" style="width: 100%"
-                                                      :default-sort="{prop: 'date', order: 'descending'}">
-                                                <!-- <el-table-column type="index" width="50"> -->
-                                                </el-table-column>
-                                                <el-table-column prop="date" label="日期" sortable width="180">
-                                                </el-table-column>
-                                                <el-table-column prop="name" label="姓名" sortable width="180">
-                                                </el-table-column>
-                                                <el-table-column prop="address" label="地址" :formatter="formatter">
-                                                </el-table-column>
-                                            </el-table>
-                                        </template>
+                                <div class="zzy">
+                                    <!-- Swiper -->
+                                    <!--                                    <h2>Traditional,<br>-->
+                                    <!--                                        Yet Completely New</h2>-->
+                                    <br>
+                                    <br>
+                                    <div class="swiper-container"
+                                    ">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="title">#01 _ The entrance</div>
+                                            <img data-src="img/picture-1.jpg" data-srcset="img/picture-1-2x.jpg 2x"
+                                                 class="swiper-lazy">
+                                            <div class="swiper-lazy-preloader"></div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="title">#02 _ A tatami-matted hallway</div>
+                                            <img data-src="img/picture-2.jpg" data-srcset="img/picture-2-2x.jpg 2x"
+                                                 class="swiper-lazy">
+                                            <div class="swiper-lazy-preloader"></div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="title">#03 _ A guestroom</div>
+                                            <img data-src="img/picture-3.jpg" data-srcset="img/picture-3-2x.jpg 2x"
+                                                 class="swiper-lazy">
+                                            <div class="swiper-lazy-preloader"></div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="title">#04 _ The ochanoma lounge</div>
+                                            <img data-src="img/picture-4.jpg" data-srcset="img/picture-4-2x.jpg 2x"
+                                                 class="swiper-lazy">
+                                            <div class="swiper-lazy-preloader"></div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="title">#05 _ Reception</div>
+                                            <img data-src="img/picture-5.jpg" data-srcset="img/picture-5-2x.jpg 2x"
+                                                 class="swiper-lazy">
+                                            <div class="swiper-lazy-preloader"></div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="title">#06 _ The entrance garden</div>
+                                            <img data-src="img/picture-6.jpg" data-srcset="img/picture-6-2x.jpg 2x"
+                                                 class="swiper-lazy">
+                                            <div class="swiper-lazy-preloader"></div>
+                                        </div>
                                     </div>
+                                    <div class="swiper-pagination"></div>
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-button-next"></div>
                                 </div>
                             </div>
                         </div>
@@ -325,7 +346,10 @@
         </div>
     </div>
 </div>
-<!-- Page Wrapper End -->
+</div>
+
+
+<!--                             Page Wrapper End -->
 
 <!-- jquery -->
 <script src="assets/js/jquery.js"></script>
@@ -365,42 +389,54 @@
 <!-- Main script -->
 <script src="assets/js/main.js"></script>
 
-<script src="assets/js/vue.js"></script>
-<!-- 引入组件库 -->
+<!-- 引入element组件库 -->
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
+<!--引入swiper组件库-->
+<script src="js/swiper.min.js"></script>
 
 <script>
-    new Vue({
-        el: "#app",
-        data: {
-            tableData: [{
-                date: '2016-05-02',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-04',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1517 弄'
-            }, {
-                date: '2016-05-01',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1519 弄'
-            }, {
-                date: '2016-05-03',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1516 弄'
-            }]
-
+    var swiper = new Swiper('.swiper-container', {
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
         },
-
-        methods: {
-            formatter(row, column) {
-                return row.address;
-            }
-        }
-    })
+        speed: 700,
+        allowTouchMove: false,
+        lazy: {
+            loadPrevNext: true,
+            loadPrevNextAmount: 3,
+        },
+        centeredSlides: true,
+        spaceBetween: 50,
+        slidesOffsetBefore: 40,
+        loop: true,
+        slidesPerView: 'auto',
+        on: {
+            slideChangeTransitionEnd: function () {
+                this.slides.transition(this.params.autoplay.delay + this.params.speed).transform('translate3d(-60px, 0, 0)');
+            },
+            slideChangeTransitionStart: function () {
+                this.slides.transition(this.params.speed).transform('translate3d(0, 0, 0)');
+            },
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            renderBullet: function (index, className) {
+                return '<div class="' + className + '"><span></span><i></i></div>';
+            },
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    window.onresize = function () {
+        swiper.update();
+    }
 </script>
-</body>
 
+</body>
 </html>
+

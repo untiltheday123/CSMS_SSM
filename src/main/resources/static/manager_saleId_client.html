@@ -12,7 +12,7 @@
 
 <body>
 
-<div id="app1" style="margin: 40px auto">
+<div id="app" style="margin: 40px auto">
     <template>
         <el-page-header @back="goBack" :content="content">
         </el-page-header>
@@ -54,6 +54,12 @@
                     header-align="center" align="center">
             </el-table-column>
         </el-table>
+
+        <br/>
+        <!--        页码-->
+        <el-pagination background layout="prev, pager, next" @current-change="handleCurrentChange"
+                       :total="totalCount">
+        </el-pagination>
     </template>
 
 </div>
@@ -67,10 +73,11 @@
 
 <script>
     new Vue({
-        el: "#app1",
+        el: "#app",
         data: {
-            content: "{{}}服务的客户"
-            ,
+            totalCount: 400,
+            currentPage: 1,
+            content: "{{}}服务的客户",
             tableData: [{
                 date: '2016-05-02',
                 user_name: '王小虎',
@@ -90,20 +97,19 @@
             }]
         },
         mounted() {
+            var sale_name = sessionStorage.getItem("sale_name");
+            this.content = sale_name + "管理的客户";
+
             var id = sessionStorage.getItem("sale_id");
             var this_ = this
-
-            axios.get("/users/" + id).then((res) => {
+            // 页面加载完成，发送异步请求
+            axios.get("/userSales/" + id).then((res) => {
                 if (res.data.code === 20041) {
-                    this_.tableData = res.data.data;
-                } else if (res.data.code === 20040) {
-                    alert("客户查找失败！！！")
+                    this_.totalCount = res.data.data;
                 }
             })
-            var sale_name = sessionStorage.getItem("sale_name");
-            // alert(sale_name)
-            // alert(sale_name)
-            this.content = sale_name + "管理的客户";
+
+            this.selectClient(1);
         },
         methods: {
             goBack() {
@@ -113,12 +119,27 @@
             },
             formatter(row, column) {
                 return row.address;
+            },
+            handleCurrentChange(val) {
+                // console.log(`当前页: ${val}`);
+                // this.currentPage = val;
+                this.selectSalesman(val);
+            },
+            selectClient(page) {
+                var id = sessionStorage.getItem("sale_id");
+                this.currentPage = page;
+                var start = (page - 1) * 10;
+                var this_ = this;
+                axios.get("/userSales/" + id + "/" + start).then((res) => {
+                    if (res.data.code === 20041) {
+                        this_.tableData = res.data.data;
+                    } else if (res.data.code === 20040) {
+                        alert("客户查找失败！！！")
+                    }
+                })
+
             }
-            // view_orderDetail(order_id) {
-            //     // alert(order_id)
-            //     sessionStorage.setItem("order_id",order_id);
-            //     $("#right_content").load("order_detail.html");
-            // }
+
         }
     })
 </script>

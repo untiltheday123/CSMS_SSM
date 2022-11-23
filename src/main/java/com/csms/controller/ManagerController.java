@@ -31,8 +31,8 @@ public class ManagerController {
      */
     @GetMapping("{page}")
     public Result querySalesmanByPage(@PathVariable int page){
-        int startPage = (page - 1) * 10;
-        List<Salesman> salesmenByPage = managerService.querySalesmanByPage(startPage);
+//        int startPage = (page - 1) * 10;
+        List<Salesman> salesmenByPage = managerService.querySalesmanByPage(page);
         return new Result(salesmenByPage != null ? Code.GET_OK : Code.GET_ERR,salesmenByPage);
     }
 

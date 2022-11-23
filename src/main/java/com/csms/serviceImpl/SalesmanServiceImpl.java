@@ -25,9 +25,8 @@ public class SalesmanServiceImpl implements SalesmanService {
 
 
     @Override
-    public Boolean sale_login(String username, String userpwd) {
-        int num = salesmanDao.selectUserByUsernameAndUserPwd(username, userpwd);
-        return num > 0;
+    public String sale_login(String username, String userpwd) {
+        return salesmanDao.selectUserByUsernameAndUserPwd(username, userpwd);
     }
 //
 //    @Override

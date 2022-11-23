@@ -18,22 +18,24 @@
 
             <el-table-column type="index" width="50" header-align="center" header-align="center" align="center">
             </el-table-column>
-            <el-table-column prop="sale_name" label="姓名" width="170" header-align="center" align="center">
+            <el-table-column prop="sale_name" label="姓名" width="130" header-align="center" align="center">
             </el-table-column>
-            <el-table-column prop="sale_id" sortable label="工号" width="170" header-align="center" align="center">
+            <el-table-column prop="sale_username" label="用户名" width="130" header-align="center" align="center">
             </el-table-column>
-            <el-table-column prop="sale_sex" sortable label="性别" width="100" header-align="center" align="center">
+            <el-table-column prop="sale_id" sortable label="工号" width="150" header-align="center" align="center">
+            </el-table-column>
+            <el-table-column prop="sale_sex" sortable label="性别" width="80" header-align="center" align="center">
             </el-table-column>
             <el-table-column prop="sale_phone" sortable label="电话" width="170" header-align="center" align="center">
             </el-table-column>
 
-            <el-table-column prop="mana_ord" label="管理订单" width="170" header-align="center" align="center">
+            <el-table-column prop="mana_ord" label="管理订单" width="150" header-align="center" align="center">
                 <template slot-scope="scope">
                     <el-button type="info" round plain @click="view_orderDetails(scope.row)" size="medium">查看详情
                     </el-button>
                 </template>
             </el-table-column>
-            <el-table-column prop="mana_ges" label="管理客户" width="170" header-align="center" align="center">
+            <el-table-column prop="mana_ges" label="管理客户" width="150" header-align="center" align="center">
                 <template slot-scope="scope">
                     <el-button type="info" round plain @click="view_clientDetails(scope.row)" size="medium">查看详情
                     </el-button>
@@ -111,7 +113,7 @@
             totalCount: 400,
             currentPage: 1,
             tableData: [{
-                sale_name: '王小虎',
+                sale_username: '王小虎',
                 sale_id: '123456',
                 sale_sex: '男',
                 sale_phone: '12345678901',
@@ -120,7 +122,7 @@
                 // address: '上海市普陀区金沙江路 1518 弄',
                 // tag: '家'
             }, {
-                name: '王小虎',
+                sale_username: '王小虎',
                 sale_id: '124456',
                 sex: '男',
                 phone: '12345678901',
@@ -129,7 +131,7 @@
                 // address: '上海市普陀区金沙江路 1518 弄',
                 // tag: '公司'
             }, {
-                sale_name: '王小虎',
+                sale_username: '王小虎',
                 sale_id: '234456',
                 sex: '男',
                 phone: '12345678901',
@@ -138,7 +140,7 @@
                 // address: '上海市普陀区金沙江路 1518 弄',
                 // tag: '家'
             }, {
-                sale_name: '王小虎',
+                sale_username: '王小虎',
                 sale_id: '234456',
                 sex: '男',
                 phone: '12345678901',
@@ -147,7 +149,7 @@
                 // address: '上海市普陀区金沙江路 1518 弄',
                 // tag: '家'
             }, {
-                sale_name: '王小虎',
+                sale_username: '王小虎',
                 sale_id: '234456',
                 sex: '男',
                 phone: '12345678901',
@@ -156,7 +158,7 @@
                 // address: '上海市普陀区金沙江路 1518 弄',
                 // tag: '家'
             }, {
-                sale_name: '王小虎',
+                sale_username: '王小虎',
                 sale_id: '234456',
                 sex: '男',
                 phone: '12345678901',
@@ -165,7 +167,7 @@
                 // address: '上海市普陀区金沙江路 1518 弄',
                 // tag: '家'
             }, {
-                sale_name: '王小虎',
+                sale_username: '王小虎',
                 sale_id: '234456',
                 sex: '男',
                 phone: '12345678901',
@@ -174,7 +176,7 @@
                 // address: '上海市普陀区金沙江路 1518 弄',
                 // tag: '家'
             }, {
-                sale_name: '王小虎',
+                sale_username: '王小虎',
                 sale_id: '234456',
                 sex: '男',
                 phone: '12345678901',
@@ -183,7 +185,7 @@
                 // address: '上海市普陀区金沙江路 1518 弄',
                 // tag: '家'
             }, {
-                sale_name: '王小虎',
+                sale_username: '王小虎',
                 sale_id: '234456',
                 sex: '男',
                 phone: '12345678901',
@@ -192,7 +194,7 @@
                 // address: '上海市普陀区金沙江路 1518 弄',
                 // tag: '家'
             }, {
-                sale_name: '王小虎',
+                sale_username: '王小虎',
                 sale_id: '234456',
                 sex: '男',
                 phone: '12345678901',
@@ -201,7 +203,7 @@
                 // address: '上海市普陀区金沙江路 1518 弄',
                 // tag: '家'
             }, {
-                sale_name: '王小虎',
+                sale_username: '王小虎',
                 sale_id: '234456',
                 sex: '男',
                 phone: '12345678901',
@@ -210,7 +212,7 @@
                 // address: '上海市普陀区金沙江路 1518 弄',
                 // tag: '家'
             }, {
-                name: '王小虎',
+                sale_username: '王小虎',
                 sale_id: '563546',
                 sex: '男',
                 phone: '12345678901',
@@ -259,7 +261,6 @@
                     if (res.data.code === 20041) {
                         this_.tableData = res.data.data;
                         this_.allInfo = res.data.data;
-
                     }
                 })
             },
@@ -299,9 +300,10 @@
             handleEdit(index, row) {
 
                 this.eachSalesForm.sale_password = this.allInfo[index].sale_password;
-                this.eachSalesForm.sale_username = this.allInfo[index].sale_username;
 
                 this.editDialogVisible = true;
+
+                this.eachSalesForm.sale_username = row.sale_username;
                 this.eachSalesForm.sale_name = row.sale_name;
                 this.eachSalesForm.sale_id = row.sale_id;
                 this.eachSalesForm.sale_sex = row.sale_sex;

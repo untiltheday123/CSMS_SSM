@@ -69,7 +69,12 @@ function submit_(type) {
     axios.get("/logins/" + username + "/" + password + "/" + type).then((res) => {
         if (res.data.code === 20041) {
             // alert("登录成功！！！")
-            location.href = (type === "1") ? "index_manager.html" : "index_sale.html";
+            if(type === "1"){
+                location.href = "index_manager.html";
+            }else {
+                sessionStorage.setItem("sale_id",res.data.data);
+                location.href = "index_sale.html";
+            }
         } else if (res.data.code === 20040) {
             alert("用户名或密码输入有误！！！")
         } else {
