@@ -14,8 +14,8 @@
 
 <div id="app" style="margin: 40px auto">
     <template>
-        <el-page-header @back="goBack" :content="content">
-        </el-page-header>
+<!--        <el-page-header @back="goBack" :content="content">-->
+<!--        </el-page-header>-->
         <br/>
         <el-table
                 :data="tableData"
@@ -25,12 +25,6 @@
             <el-table-column type="index"
                              width="80">
             </el-table-column>
-            <!--            <el-table-column-->
-            <!--                    prop="user_name"-->
-            <!--                    label="姓名"-->
-            <!--                    sortable-->
-            <!--                    width="180">-->
-            <!--            </el-table-column>-->
             <el-table-column
                     prop="order_id"
                     label="订单ID"
@@ -38,16 +32,6 @@
                     width="210"
                     header-align="center" align="center">
             </el-table-column>
-            <!--            <el-table-column-->
-            <!--                    prop="user_"-->
-            <!--                    label="交易商品"-->
-            <!--                    width="180">-->
-            <!--            </el-table-column>-->
-            <!--            <el-table-column-->
-            <!--                    prop="user_"-->
-            <!--                    label="交易数量"-->
-            <!--                    width="180">-->
-            <!--            </el-table-column>-->
             <el-table-column
                     prop="order_total"
                     label="交易总金额(元)"
@@ -95,8 +79,8 @@
     new Vue({
         el: "#app",
         data: {
-            content: "{{}}管理的订单"
-            ,
+            // content: "{{}}管理的订单"
+            // ,
             tableData: [{
                 date: '2016-05-02',
                 user_name: '王小虎',
