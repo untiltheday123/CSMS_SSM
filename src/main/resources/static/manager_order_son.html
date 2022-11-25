@@ -143,7 +143,7 @@
                 var start = (page - 1) * 10;
                 // alert(start)
                 var this_ = this
-                axios.get("/orders/" + start + "/123").then((res) => {
+                axios.get("/orders/" + start).then((res) => {
                     if (res.data.code === 20041) {
                         this_.tableData = res.data.data;
                         // console.log(this_.tableData)

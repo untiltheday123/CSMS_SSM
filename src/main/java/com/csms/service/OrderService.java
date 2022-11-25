@@ -15,12 +15,20 @@ public interface OrderService {
     /**
      * 根据ID查询订单
      * @param sale_id
+     * @param startPage
      * @return
      */
-    List<Order> queryOrderSalesman(String sale_id);
+    List<Order> queryOrderBySalesIdByPage(String sale_id,int startPage);
 
     /**
-     * 查询客户数量
+     * 根据ID查询订单数量
+     * @param sale_id
+     * @return
+     */
+    int queryOrderBySalesId(String sale_id);
+
+    /**
+     * 查询订单数量
      * @return
      */
     int queryOrder();

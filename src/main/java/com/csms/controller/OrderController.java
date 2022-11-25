@@ -15,19 +15,24 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @GetMapping("{sale_id}")
-    public Result queryOrderBySalesman(@PathVariable String sale_id){
-        List<Order> orderBySalesmen = orderService.queryOrderSalesman(sale_id);
-        return new Result(orderBySalesmen != null ? Code.GET_OK : Code.GET_ERR,orderBySalesmen);
-    }
 
     //    方法名不够了
-    @GetMapping("/{startPage}/{ccc}")
-    public Result queryOrderByPage(@PathVariable int startPage,@PathVariable String ccc){
+
+    /**
+     * 分页查询所有的订单
+     * @param startPage
+     * @return
+     */
+    @GetMapping("/{startPage}")
+    public Result queryOrderByPage(@PathVariable int startPage){
         List<Order> orders = orderService.queryOrderByPage(startPage);
         return new Result(orders != null ? Code.GET_OK : Code.GET_ERR,orders);
     }
 
+    /**
+     * 查询所有订单数量
+     * @return
+     */
     @GetMapping
     public Result queryOrder(){
         int num = orderService.queryOrder();

@@ -64,6 +64,11 @@
                 </template>
             </el-table-column>
         </el-table>
+        <br/>
+        <!--        页码-->
+        <el-pagination background layout="prev, pager, next" @current-change="handleCurrentChange"
+                       :total="totalCount">
+        </el-pagination>
     </template>
 
 </div>
@@ -81,6 +86,8 @@
         data: {
             // content: "{{}}管理的订单"
             // ,
+            totalCount: 400,
+            currentPage: 1,
             tableData: [{
                 date: '2016-05-02',
                 user_name: '王小虎',
@@ -104,42 +111,45 @@
             // alert(id)
 
             var this_ = this
-            // $.ajax({
-            //     url: "/Order.java/queryOrderBySalesman",
-            //     data: {sale_id:id},
-            //     type: "get",
-            //     // async: false,//这里这里，要用同步请求
-            //     async: false,
-            //     dataType: "json",
-            //     success: function (obj) {
-            //         this_.tableData = obj;
-            //     }
-            // })
-            axios.get("/orders/" + id).then((res) => {
+            axios.get("/orderSales/" + id).then((res) => {
                 if (res.data.code === 20041) {
-                    this_.tableData = res.data.data;
+                    this_.totalCount = res.data.data;
                 } else if (res.data.code === 20040) {
                     alert("订单查找失败！！！")
                 }
             })
-            var sale_name = sessionStorage.getItem("sale_name");
-            // alert(sale_name)
-            // alert(sale_name)
-            this.content = sale_name + "管理的订单";
+
+            this.selectOrder(1);
+            // var sale_name = sessionStorage.getItem("sale_name");
+            // this.content = sale_name + "管理的订单";
         },
         methods: {
-            goBack() {
-                // console.log('go back');
-
-                $("#right_content").load("manager_salesman_son.html");
+            handleCurrentChange(val) {
+                // console.log(`当前页: ${val}`);
+                // this.currentPage = val;
+                this.selectOrder(val);
+            },
+            selectOrder(page) {
+                var id = sessionStorage.getItem("sale_id");
+                this.currentPage = page;
+                var start = (page - 1) * 10;
+                var this_ = this;
+                axios.get("/orderSales/" + id + "/" + start).then((res) => {
+                    if (res.data.code === 20041) {
+                        this_.tableData = res.data.data;
+                        this_.allInfo = res.data.data;
+                    } else if (res.data.code === 20040) {
+                        alert("订单查找失败！！！")
+                    }
+                })
             },
             formatter(row, column) {
                 return row.address;
             },
             view_orderDetail(order_id) {
                 // alert(order_id)
-                sessionStorage.setItem("order_id",order_id);
-                $("#right_content").load("order_detail.html");
+                // sessionStorage.setItem("order_id",order_id);
+                $("#right_content").load("order_detail3.html");
             }
         }
     })

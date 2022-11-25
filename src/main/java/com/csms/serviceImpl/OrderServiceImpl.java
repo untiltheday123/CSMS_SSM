@@ -24,9 +24,14 @@ public class OrderServiceImpl implements OrderService {
     private OrderDao orderDao;
 
     @Override
-    public List<Order> queryOrderSalesman(String sale_id) {
-        System.out.println(orderDao.queryOrderBySalesman(sale_id));
-        return orderDao.queryOrderBySalesman(sale_id);
+    public List<Order> queryOrderBySalesIdByPage(String sale_id,int startPage) {
+//        System.out.println(orderDao.queryOrderBySalesIdByPage(sale_id,startPage));
+        return orderDao.queryOrderBySalesIdByPage(sale_id,startPage);
+    }
+
+    @Override
+    public int queryOrderBySalesId(String sale_id) {
+        return orderDao.queryOrderBySalesId(sale_id);
     }
 
     @Override

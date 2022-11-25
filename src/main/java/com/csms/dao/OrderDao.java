@@ -11,8 +11,12 @@ import java.util.List;
 @Mapper
 public interface OrderDao {
 
-    @Select("select * from orders where sale_id = #{sale_id}")
-    List<Order> queryOrderBySalesman(@Param("sale_id") String sale_id);
+    @Select("select * from orders where sale_id = #{sale_id} limit #{startPage},10")
+    List<Order> queryOrderBySalesIdByPage(@Param("sale_id") String sale_id,@Param("startPage") int startPage);
+
+
+    @Select("select count(*) from orders where sale_id = #{sale_id}")
+    int queryOrderBySalesId(@Param("sale_id") String sale_id);
 
     @Select("select count(*) from orders")
     int queryOrder();
