@@ -29,7 +29,7 @@ public class ManagerController {
      * @param page
      * @return
      */
-    @GetMapping("{page}")
+    @GetMapping("/{page}")
     public Result querySalesmanByPage(@PathVariable int page){
 //        int startPage = (page - 1) * 10;
         List<Salesman> salesmenByPage = managerService.querySalesmanByPage(page);

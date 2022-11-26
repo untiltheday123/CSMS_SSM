@@ -14,6 +14,33 @@
     <template>
         <!--        <el-button @click="resetDateFilter">清除日期过滤器</el-button>-->
         <!--        <el-button @click="clearFilter">清除所有过滤器</el-button>-->
+        <div class="demo-input-size">
+            <el-input
+                    style="width: 200px;margin-right: 30px"
+                    placeholder="请输入姓名"
+                    v-model="input_name"
+                    clearable>
+            </el-input>
+            <el-input
+                    style="width: 200px;margin-right: 30px"
+                    placeholder="请输入用户名"
+                    v-model="input_user"
+                    clearable>
+            </el-input>
+            <el-input
+                    style="width: 200px;margin-right: 30px"
+                    placeholder="请输入工号"
+                    v-model="input_id"
+                    clearable>
+            </el-input>
+            <el-input
+                    style="width: 200px;margin-right: 30px"
+                    placeholder="请输入电话"
+                    v-model="input_phone"
+                    clearable>
+            </el-input>
+            <el-button type="primary" icon="el-icon-search" style="margin-left: 30px" @click="query_salesman">搜索</el-button>
+        </div>
         <el-table ref="filterTable" :data="tableData" style="width: 100%">
 
             <el-table-column type="index" width="50" header-align="center" header-align="center" align="center">
@@ -109,6 +136,10 @@
     var app = new Vue({
         el: "#app",
         data: {
+            input_name: '',
+            input_user: '',
+            input_id: '',
+            input_phone: '',
             // tableData: [],
             totalCount: 400,
             currentPage: 1,
@@ -252,6 +283,14 @@
 
         },
         methods: {
+            query_salesman(){
+                var param = "?query";
+                param += "&sale_name=" + this.input_name;
+                param += "&sale_username=" + this.input_user;
+                param += "&sale_id=" + this.input_id;
+                param += "&sale_phone=" + this.input_phone;
+                this.selectSalesmanAll(param);
+            },
             selectSalesman(page) {
                 this.currentPage = page;
                 var start = (page - 1) * 10;
@@ -264,22 +303,19 @@
                     }
                 })
             },
-            // resetDateFilter() {
-            //     this.$refs.filterTable.clearFilter('date');
-            // },
-            clearFilter() {
-                this.$refs.filterTable.clearFilter();
+            //条件查询
+            selectSalesmanAll(param) {
+                // this.currentPage = page;
+                // var start = (page - 1) * 10;
+                // // alert(start)
+                var this_ = this
+                axios.get("/search/querySalesman/" + param).then((res) => {
+                    if (res.data.code === 20041) {
+                        this_.tableData = res.data.data;
+                        this_.allInfo = res.data.data;
+                    }
+                })
             },
-            // formatter(row, column) {
-            //     return row.address;
-            // },
-            // filterTag(value, row) {
-            //     return row.tag === value;
-            // },
-            // filterHandler(value, row, column) {
-            //     const property = column['property'];
-            //     return row[property] === value;
-            // },
             handleCurrentChange(val) {
                 // console.log(`当前页: ${val}`);
                 // this.currentPage = val;
