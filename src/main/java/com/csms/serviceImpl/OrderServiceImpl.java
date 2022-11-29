@@ -1,8 +1,8 @@
 package com.csms.serviceImpl;//package com.csms.service.impl;
 
 import com.csms.dao.OrderDao;
-import com.csms.domain.Order;
-import com.csms.domain.User;
+import com.csms.dao.SearchOrderDao;
+import com.csms.domain.Orders;
 import com.csms.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,11 +22,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderDao orderDao;
+    @Autowired
+    private SearchOrderDao searchOrderDao;
 
     @Override
-    public List<Order> queryOrderBySalesIdByPage(String sale_id,int startPage) {
+    public List<Orders> queryOrderBySalesIdByPage(String sale_id, int startPage) {
 //        System.out.println(orderDao.queryOrderBySalesIdByPage(sale_id,startPage));
-        return orderDao.queryOrderBySalesIdByPage(sale_id,startPage);
+        return orderDao.queryOrderBySalesIdByPage(sale_id, startPage);
     }
 
     @Override
@@ -40,15 +42,17 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> queryOrderByPage(int startPage) {
+    public List<Orders> queryOrderByPage(int startPage) {
 //        System.out.println(orderDao.queryOrderByPage(startPage));
         return orderDao.queryOrderByPage(startPage);
     }
 
     @Override
-    public Boolean deleteOrder(String order_id){
+    public Boolean deleteOrder(String order_id) {
         int deleteOrder1 = orderDao.deleteOrder1(order_id);
         int deleteOrder2 = orderDao.deleteOrder2(order_id);
-        return deleteOrder1*deleteOrder2 != 0;
+        return deleteOrder1 * deleteOrder2 != 0;
     }
+
+
 }

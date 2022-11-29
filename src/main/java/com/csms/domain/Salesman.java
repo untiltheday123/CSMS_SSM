@@ -1,5 +1,7 @@
 package com.csms.domain;
 
+import java.awt.print.Book;
+
 public class Salesman {
     String sale_id;
     String sale_name;
@@ -70,4 +72,5 @@ public class Salesman {
                 ", sale_phone=" + sale_phone +
                 '}';
     }
+
 }

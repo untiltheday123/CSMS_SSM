@@ -1,7 +1,6 @@
 package com.csms.service;//package com.csms.service;
 
-import com.csms.domain.Order;
-import com.csms.domain.User;
+import com.csms.domain.Orders;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ public interface OrderService {
      * @param startPage
      * @return
      */
-    List<Order> queryOrderBySalesIdByPage(String sale_id,int startPage);
+    List<Orders> queryOrderBySalesIdByPage(String sale_id, int startPage);
 
     /**
      * 根据ID查询订单数量
@@ -38,7 +37,7 @@ public interface OrderService {
      * @param startPage
      * @return
      */
-    List<Order> queryOrderByPage(int startPage);
+    List<Orders> queryOrderByPage(int startPage);
 
     /**
      * 删除订单
@@ -46,4 +45,6 @@ public interface OrderService {
      * @return
      */
     Boolean deleteOrder(String order_id);
+
+
 }

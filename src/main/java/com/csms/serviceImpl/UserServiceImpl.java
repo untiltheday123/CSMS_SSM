@@ -1,5 +1,6 @@
 package com.csms.serviceImpl;
 
+import com.csms.dao.SearchSalesmanDao;
 import com.csms.dao.UserDao;
 import com.csms.domain.User;
 import com.csms.service.UserService;
@@ -13,6 +14,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private SearchSalesmanDao searchDao;
 
     @Override
     public List<User> queryUserBySaleIdAndPage(String sale_id,int startPage) {
@@ -42,4 +45,5 @@ public class UserServiceImpl implements UserService {
         int flag = userDao.updateSalesman(user.getUser_name(),user.getUser_username(),user.getUser_password(),user.getUser_phone(),user.getUser_sex(),user.getUser_address(),user.getUser_id());
         return flag > 0;
     }
+
 }

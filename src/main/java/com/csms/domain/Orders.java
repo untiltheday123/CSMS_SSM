@@ -1,6 +1,6 @@
 package com.csms.domain;
 
-public class Order {
+public class Orders {
     String order_id;
     String order_time;
     String order_state;

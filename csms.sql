@@ -52,7 +52,7 @@ UNLOCK TABLES;
 -- Table structure for table `orders`
 --
 
-DROP TABLE IF EXISTS `orders`;
+DROP TABLE IF EXISTS `order`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `orders` (
@@ -74,10 +74,10 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-LOCK TABLES `orders` WRITE;
-/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES ('o00001','2022-10-01','已完成','267.91','s00001','u00001'),('o00002','2022-10-02','已完成','1071.15','s00003','u00002'),('o00003','2022-10-03','未完成','667.91','s00004','u00003'),('o00004','2022-10-04','已完成','1590.10','s00002','u00004'),('o00005','2022-10-05','已完成','136.60','s00005','u00005');
-/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+LOCK TABLES `order` WRITE;
+/*!40000 ALTER TABLE `order` DISABLE KEYS */;
+INSERT INTO `order` VALUES ('o00001','2022-10-01','已完成','267.91','s00001','u00001'),('o00002','2022-10-02','已完成','1071.15','s00003','u00002'),('o00003','2022-10-03','未完成','667.91','s00004','u00003'),('o00004','2022-10-04','已完成','1590.10','s00002','u00004'),('o00005','2022-10-05','已完成','136.60','s00005','u00005');
+/*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -94,7 +94,7 @@ CREATE TABLE `orders_pro` (
   `pro_total` decimal(8,2) DEFAULT NULL,
   KEY `order_id_idx` (`order_id`),
   KEY `pro_id_idx` (`pro_id`),
-  CONSTRAINT `order_id` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `order_id` FOREIGN KEY (`order_id`) REFERENCES `order` (`order_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `pro_id_fk` FOREIGN KEY (`pro_id`) REFERENCES `product` (`pro_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

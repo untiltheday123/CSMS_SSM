@@ -10,9 +10,42 @@
 <body>
 <div id="app" style="margin: 40px auto;overflow-y: scroll">
     <template>
+        <div class="demo-input-size" id="search_Client" style="display: none">
+            <el-input
+                    style="width: 170px;margin-right: 25px"
+                    placeholder="请输入姓名"
+                    v-model="input_name"
+                    clearable>
+            </el-input>
+            <el-input
+                    style="width: 170px;margin-right: 25px"
+                    placeholder="请输入用户名"
+                    v-model="input_user"
+                    clearable>
+            </el-input>
+            <el-input
+                    style="width: 170px;margin-right: 25px"
+                    placeholder="请输入ID"
+                    v-model="input_id"
+                    clearable>
+            </el-input>
+            <el-input
+                    style="width: 170px;margin-right: 25px"
+                    placeholder="请输入电话"
+                    v-model="input_phone"
+                    clearable>
+            </el-input>
+            <el-input
+                    style="width: 170px;margin-right: 25px"
+                    placeholder="请输入销售ID"
+                    v-model="input_saleId"
+                    clearable>
+            </el-input>
+            <el-button type="primary" icon="el-icon-search" style="margin-left: 20px" @click="query_client">搜索</el-button>
+        </div>
         <el-table ref="filterTable" :data="tableData" style="width: 100%">
 
-            <el-table-column type="index" width="50" header-align="center" header-align="center" align="center">
+            <el-table-column type="index" width="60" header-align="center" header-align="center" align="center">
             </el-table-column>
             <el-table-column prop="user_id" sortable label="客户ID" width="150" header-align="center" align="center">
             </el-table-column>
@@ -20,7 +53,7 @@
             </el-table-column>
             <el-table-column prop="user_username" sortable label="用户名" width="170" header-align="center" align="center">
             </el-table-column>
-            <el-table-column prop="user_sex" sortable label="性别" width="90" header-align="center" align="center">
+            <el-table-column prop="user_sex" sortable label="性别" width="100" header-align="center" align="center">
             </el-table-column>
             <el-table-column prop="user_phone" sortable label="电话" width="170" header-align="center" align="center">
             </el-table-column>
@@ -99,6 +132,11 @@
     var app = new Vue({
         el: "#app",
         data: {
+            input_name: '',
+            input_user: '',
+            input_id: '',
+            input_phone: '',
+            input_saleId: '',
             totalCount: 400,
             currentPage: 1,
             tableData: [{
@@ -142,6 +180,15 @@
 
         },
         methods: {
+            query_client(){
+                var param = "?query";
+                param += "&user_name=" + this.input_name;
+                param += "&user_username=" + this.input_user;
+                param += "&user_id=" + this.input_id;
+                param += "&user_phone=" + this.input_phone;
+                param += "&sale_id=" + this.input_saleId;
+                this.selectClientAll(param,1);
+            },
             selectClient(page) {
                 this.currentPage = page;
                 var start = (page - 1) * 10;
@@ -153,6 +200,20 @@
                         // console.log(this_.tableData)
                         this_.allInfo = res.data.data;
 
+                    }
+                })
+            },
+            // 条件查询销售人员
+            selectClientAll(param,page) {
+                this.currentPage = page;
+                var start = (page - 1) * 10;
+                // // alert(start)
+                var this_ = this
+                axios.get("/search/queryClient/"+ start + param).then((res) => {
+                    if (res.data.code === 20041) {
+                        this_.tableData = res.data.data.records;
+                        this_.totalCount = res.data.data.total;
+                        this_.allInfo = res.data.data.records;
                     }
                 })
             },
@@ -177,19 +238,25 @@
             //     "user_address": ""
             // },
             handleEdit(index, row) {
+                // alert("1111111111")
+                // console.log(row.user_username)
                 this.editDialogVisible = true;
 
                 this.eachClientForm.user_password = this.allInfo[index].user_password;
                 // this.eachClientForm.user_username = this.allInfo[index].user_username;
+                // alert(this.allInfo[index].user_username);
+                // alert(this.allInfo[index].user_username)
+                // console.log(row.user_username)
+                this.eachClientForm.user_username = row.user_username;
                 this.eachClientForm.user_name = row.user_name;
                 this.eachClientForm.user_id = row.user_id;
                 this.eachClientForm.user_sex = row.user_sex;
                 this.eachClientForm.user_phone = row.user_phone;
                 this.eachClientForm.user_address = row.user_address;
-                console.log(index, row);
+                console.log(this.eachClientForm.user_username);
             },
             handleDelete(index, row) {
-                console.log(index, row);
+                // console.log(index, row);
             },
             //修改提交
             editClient() {
@@ -205,6 +272,17 @@
                 })
             }
         }
+    })
+
+    var searchClick = true;
+    //true表示不显示
+    $("#search").click(function (){
+        // console.log(searchClick)
+        searchClick = !searchClick;
+        if(searchClick)
+            $("#search_Client").css("display","none");
+        else
+            $("#search_Client").css("display","block");
     })
 </script>
 </body>

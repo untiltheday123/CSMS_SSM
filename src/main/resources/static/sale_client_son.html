@@ -10,6 +10,33 @@
 <body>
 <div id="app" style="margin: 40px auto;overflow-y: scroll">
     <template>
+        <div class="demo-input-size" id="search_User" style="display: none;margin: 0 auto">
+            <el-input
+                    style="width: 200px;margin-right: 30px"
+                    placeholder="请输入姓名"
+                    v-model="input_name"
+                    clearable>
+            </el-input>
+            <el-input
+                    style="width: 200px;margin-right: 30px"
+                    placeholder="请输入用户名"
+                    v-model="input_user"
+                    clearable>
+            </el-input>
+            <el-input
+                    style="width: 200px;margin-right: 30px"
+                    placeholder="请输入ID"
+                    v-model="input_id"
+                    clearable>
+            </el-input>
+            <el-input
+                    style="width: 200px;margin-right: 30px"
+                    placeholder="请输入电话"
+                    v-model="input_phone"
+                    clearable>
+            </el-input>
+            <el-button type="primary" icon="el-icon-search" style="margin-left: 30px" @click="query_clientBySaleId">搜索</el-button>
+        </div>
         <el-table ref="filterTable" :data="tableData" style="width: 100%">
 
             <el-table-column type="index" width="50" header-align="center" header-align="center" align="center">
@@ -99,6 +126,11 @@
     var app = new Vue({
         el: "#app",
         data: {
+            input_name: '',
+            input_user: '',
+            input_id: '',
+            input_phone: '',
+            input_saleId: '',
             totalCount: 400,
             currentPage: 1,
             tableData: [{
@@ -141,6 +173,16 @@
 
         },
         methods: {
+            query_clientBySaleId(){
+                this.input_saleId = sessionStorage.getItem("sale_id");
+                var param = "?query";
+                param += "&user_name=" + this.input_name;
+                param += "&user_username=" + this.input_user;
+                param += "&user_id=" + this.input_id;
+                param += "&user_phone=" + this.input_phone;
+                param += "&sale_id=" + this.input_saleId;
+                this.selectClientAll(param,1);
+            },
             selectClient(page) {
                 var id = sessionStorage.getItem("sale_id");
                 this.currentPage = page;
@@ -155,7 +197,20 @@
                     }
                 })
             },
-
+            // 条件查询销售人员
+            selectClientAll(param,page) {
+                this.currentPage = page;
+                var start = (page - 1) * 10;
+                // // alert(start)
+                var this_ = this
+                axios.get("/search/queryClient/"+ start + param).then((res) => {
+                    if (res.data.code === 20041) {
+                        this_.tableData = res.data.data.records;
+                        this_.totalCount = res.data.data.total;
+                        this_.allInfo = res.data.data.records;
+                    }
+                })
+            },
             // clearFilter() {
             //     this.$refs.filterTable.clearFilter();
             // },
@@ -204,6 +259,17 @@
                 })
             }
         }
+    })
+
+    var searchClick = true;
+    //true表示不显示
+    $("#search").click(function () {
+        // console.log(searchClick)
+        searchClick = !searchClick;
+        if (searchClick)
+            $("#search_User").css("display", "none");
+        else
+            $("#search_User").css("display", "block");
     })
 </script>
 </body>

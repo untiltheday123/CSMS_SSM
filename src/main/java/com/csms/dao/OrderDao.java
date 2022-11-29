@@ -1,6 +1,6 @@
 package com.csms.dao;//package com.csms.dao;
 
-import com.csms.domain.Order;
+import com.csms.domain.Orders;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -12,7 +12,7 @@ import java.util.List;
 public interface OrderDao {
 
     @Select("select * from orders where sale_id = #{sale_id} limit #{startPage},10")
-    List<Order> queryOrderBySalesIdByPage(@Param("sale_id") String sale_id,@Param("startPage") int startPage);
+    List<Orders> queryOrderBySalesIdByPage(@Param("sale_id") String sale_id, @Param("startPage") int startPage);
 
 
     @Select("select count(*) from orders where sale_id = #{sale_id}")
@@ -22,9 +22,9 @@ public interface OrderDao {
     int queryOrder();
 
     @Select("select * from orders limit #{startPage},10")
-    List<Order> queryOrderByPage(@Param("startPage") int startPage);
+    List<Orders> queryOrderByPage(@Param("startPage") int startPage);
 
-    @Delete("delete from orders_pro where order_id = #{oi}")
+    @Delete("delete from order_pro where order_id = #{oi}")
     int deleteOrder1(@Param("oi") String oi);
     @Delete("delete from orders where order_id = #{oi}")
     int deleteOrder2(@Param("oi") String oi);

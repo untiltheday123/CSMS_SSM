@@ -1,6 +1,9 @@
 package com.csms.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.csms.domain.Orders;
 import com.csms.domain.Salesman;
+import com.csms.domain.User;
 
 import java.util.List;
 
@@ -36,4 +39,31 @@ public interface ManagerService {
      * @return
      */
     Boolean updateSalesman(Salesman salesman);
+
+
+    /**
+     * 条件查询
+     * @param startPage
+     * @param salesman
+     * @return
+     */
+    IPage<Salesman> querySalesmanCondition(int startPage, Salesman salesman);
+
+
+    /**
+     * 条件查询
+     * @param startPage
+     * @param user
+     * @return
+     */
+    IPage<User> queryClientCondition(int startPage, User user);
+
+
+    /**
+     * 条件查询
+     * @param startPage
+     * @param order
+     * @return
+     */
+    IPage<Orders> queryOrderCondition(int startPage, Orders order);
 }

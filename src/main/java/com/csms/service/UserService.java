@@ -1,5 +1,6 @@
 package com.csms.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.csms.domain.Salesman;
 import com.csms.domain.User;
 
@@ -42,4 +43,7 @@ public interface UserService {
      * @return
      */
     Boolean updateUser(User user);
+
+
+
 }

@@ -1,7 +1,6 @@
 package com.csms.controller;
 
-import com.csms.domain.Order;
-import com.csms.domain.User;
+import com.csms.domain.Orders;
 import com.csms.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +24,7 @@ public class OrderController {
      */
     @GetMapping("/{startPage}")
     public Result queryOrderByPage(@PathVariable int startPage){
-        List<Order> orders = orderService.queryOrderByPage(startPage);
+        List<Orders> orders = orderService.queryOrderByPage(startPage);
         return new Result(orders != null ? Code.GET_OK : Code.GET_ERR,orders);
     }
 

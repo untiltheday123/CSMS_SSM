@@ -14,7 +14,7 @@
     <template>
         <!--        <el-button @click="resetDateFilter">清除日期过滤器</el-button>-->
         <!--        <el-button @click="clearFilter">清除所有过滤器</el-button>-->
-        <div class="demo-input-size">
+        <div class="demo-input-size" id="search_Salesman" style="display: none;margin: 0 auto">
             <el-input
                     style="width: 200px;margin-right: 30px"
                     placeholder="请输入姓名"
@@ -289,7 +289,7 @@
                 param += "&sale_username=" + this.input_user;
                 param += "&sale_id=" + this.input_id;
                 param += "&sale_phone=" + this.input_phone;
-                this.selectSalesmanAll(param);
+                this.selectSalesmanAll(param,1);
             },
             selectSalesman(page) {
                 this.currentPage = page;
@@ -303,16 +303,17 @@
                     }
                 })
             },
-            //条件查询
-            selectSalesmanAll(param) {
-                // this.currentPage = page;
-                // var start = (page - 1) * 10;
+            // 条件查询销售人员
+            selectSalesmanAll(param,page) {
+                this.currentPage = page;
+                var start = (page - 1) * 10;
                 // // alert(start)
                 var this_ = this
-                axios.get("/search/querySalesman/" + param).then((res) => {
+                axios.get("/search/querySalesman/"+ start + param).then((res) => {
                     if (res.data.code === 20041) {
-                        this_.tableData = res.data.data;
-                        this_.allInfo = res.data.data;
+                        this_.tableData = res.data.data.records;
+                        this_.totalCount = res.data.data.total;
+                        this_.allInfo = res.data.data.records;
                     }
                 })
             },
@@ -364,6 +365,18 @@
             }
         }
     })
+
+    var searchClick = true;
+    //true表示不显示
+    $("#search").click(function (){
+        // console.log(searchClick)
+        searchClick = !searchClick;
+        if(searchClick)
+            $("#search_Salesman").css("display","none");
+        else
+            $("#search_Salesman").css("display","block");
+    })
+
 </script>
 </body>
 

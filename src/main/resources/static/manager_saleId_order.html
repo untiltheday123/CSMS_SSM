@@ -131,7 +131,7 @@
             //         this_.tableData = obj;
             //     }
             // })
-            axios.get("/orders/" + id).then((res) => {
+            axios.get("/orderSales/" + id + "/0").then((res) => {
                 if (res.data.code === 20041) {
                     this_.tableData = res.data.data;
                 } else if (res.data.code === 20040) {

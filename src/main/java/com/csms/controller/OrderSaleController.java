@@ -1,6 +1,6 @@
 package com.csms.controller;
 
-import com.csms.domain.Order;
+import com.csms.domain.Orders;
 import com.csms.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +25,7 @@ public class OrderSaleController {
      */
     @GetMapping("/{sale_id}/{startPage}")
     public Result queryOrderBySalesIdByPage(@PathVariable String sale_id, @PathVariable int startPage){
-        List<Order> orderBySalesmen = orderService.queryOrderBySalesIdByPage(sale_id,startPage);
+        List<Orders> orderBySalesmen = orderService.queryOrderBySalesIdByPage(sale_id,startPage);
         return new Result(orderBySalesmen != null ? Code.GET_OK : Code.GET_ERR,orderBySalesmen);
     }
 
