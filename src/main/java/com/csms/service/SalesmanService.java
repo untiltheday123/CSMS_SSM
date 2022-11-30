@@ -1,4 +1,9 @@
 package com.csms.service;//package com.csms.service;
+
+import com.csms.domain.Salesman;
+
+import java.util.List;
+
 //
 //import com.csms.domain.Salesman;
 //
@@ -13,7 +18,7 @@ public interface SalesmanService {
      * @param userpwd
      * @return
      */
-    String sale_login(String username, String userpwd);
+    Salesman sale_login(String username, String userpwd);
 //
 //    int querySalesman();
 //

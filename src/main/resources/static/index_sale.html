@@ -45,48 +45,46 @@
                 <!-- 左边框 -->
                 <div class="mx-sidenav__menu-container">
                     <nav class="mx-sidenav__menu">
-                        <ul class="t-list mx-sidenav__menu-is">
-                            <li class="mx-sidenav__menu-item active-page">
-                                <a href="index_sale.html" class="mx-sidenav__menu-link">
+                        <li class="mx-sidenav__menu-item active-page">
+                            <a href="index_sale.html" class="mx-sidenav__menu-link">
                                     <span class="mx-sidenav__menu-icon t-mr-15">
                                         <span class='bx bx-category'></span>
                                     </span>
-                                    <span class="mx-sidenav__menu-text text-capitalize">
+                                <span class="mx-sidenav__menu-text text-capitalize">
                                         主页
                                     </span>
-                                </a>
-                            </li>
-                            <li class="mx-sidenav__menu-item">
-                                <a href="sale_client.html" class="mx-sidenav__menu-link">
+                            </a>
+                        </li>
+                        <li class="mx-sidenav__menu-item">
+                            <a href="sale_client.html" class="mx-sidenav__menu-link">
                                     <span class="mx-sidenav__menu-icon t-mr-15">
                                         <i class='bx bxs-user-account'></i>
                                     </span>
-                                    <span class="mx-sidenav__menu-text text-capitalize">
+                                <span class="mx-sidenav__menu-text text-capitalize">
                                         客户信息管理
                                     </span>
-                                </a>
-                            </li>
-                            <li class="mx-sidenav__menu-item">
-                                <a href="sale_order.html" class="mx-sidenav__menu-link">
+                            </a>
+                        </li>
+                        <li class="mx-sidenav__menu-item">
+                            <a href="sale_order.html" class="mx-sidenav__menu-link">
                                         <span class="mx-sidenav__menu-icon t-mr-15">
                                             <i class='bx bxs-user-account'></i>
                                         </span>
-                                    <span class="mx-sidenav__menu-text text-capitalize">
+                                <span class="mx-sidenav__menu-text text-capitalize">
                                             订单信息管理
                                         </span>
-                                </a>
-                            </li>
-                            <li class="mx-sidenav__menu-item">
-                                <a href="" class="mx-sidenav__menu-link">
+                            </a>
+                        </li>
+                        <li class="mx-sidenav__menu-item">
+                            <a href="sale_profile.html" class="mx-sidenav__menu-link">
                                         <span class="mx-sidenav__menu-icon t-mr-15">
                                             <i class='bx bxs-user-account'></i>
                                         </span>
-                                    <span class="mx-sidenav__menu-text text-capitalize">
+                                <span class="mx-sidenav__menu-text text-capitalize">
                                             数据报表
                                         </span>
-                                </a>
-                            </li>
-                        </ul>
+                            </a>
+                        </li>
                     </nav>
                 </div>
             </div>
@@ -167,7 +165,7 @@
                                                                                      class="img-fluid w-100"/>
                                                                             </span>
                                                                         <span
-                                                                                class="d-none d-lg-inline-block t-ml-8">
+                                                                                class="d-none d-lg-inline-block t-ml-8" id="saleUsername">
                                                                                 admin
                                                                                 <span
                                                                                         class="t-ml-5 d-inline-block xsm-text"
@@ -181,11 +179,11 @@
                                                                             <a href="#"
                                                                                class="mx-author-menu__link text-capitalize sm-text">
                                                                                     <span
-                                                                                            class="text-capitalize fw-bold d-block t-pt-5">
+                                                                                            class="text-capitalize fw-bold d-block t-pt-5" id="saleName">
                                                                                         harun agrosz
                                                                                     </span>
                                                                                 <span
-                                                                                        class="text-capitalize xsm-text d-block mt-1">
+                                                                                        class="text-capitalize xsm-text d-block mt-1" id="saleUsername2">
                                                                                         admin
                                                                                     </span>
                                                                             </a>
@@ -203,23 +201,7 @@
                                                                                         </span>
                                                                                     <span
                                                                                             class="d-inline-block t-line-1 sm-text">
-                                                                                            profile
-                                                                                        </span>
-                                                                                </div>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="mx-author-menu__list">
-                                                                            <a href="#"
-                                                                               class="mx-author-menu__link text-capitalize">
-                                                                                <div
-                                                                                        class="d-flex align-items-center">
-                                                                                        <span
-                                                                                                class="xxlg-text t-mr-8 d-inline-block t-line-1">
-                                                                                            <i class='bx bx-wallet'></i>
-                                                                                        </span>
-                                                                                    <span
-                                                                                            class="d-inline-block t-line-1 sm-text">
-                                                                                            my wallet
+                                                                                            个人
                                                                                         </span>
                                                                                 </div>
                                                                             </a>
@@ -235,7 +217,7 @@
                                                                                         </span>
                                                                                     <span
                                                                                             class="d-inline-block t-line-1 sm-text">
-                                                                                            settings
+                                                                                            设置
                                                                                         </span>
                                                                                 </div>
                                                                             </a>
@@ -252,12 +234,12 @@
                                                                                         </span>
                                                                                     <span
                                                                                             class="d-inline-block t-line-1 sm-text">
-                                                                                            help
+                                                                                            帮助
                                                                                         </span>
                                                                                 </div>
                                                                             </a>
                                                                         </li>
-                                                                        <li class="mx-author-menu__list">
+                                                                        <li class="mx-author-menu__list" id="logout">
                                                                             <a href="#"
                                                                                class="mx-author-menu__link text-capitalize">
                                                                                 <div
@@ -269,7 +251,7 @@
                                                                                         </span>
                                                                                     <span
                                                                                             class="d-inline-block t-line-1 sm-text">
-                                                                                            logout
+                                                                                            退出登录
                                                                                         </span>
                                                                                 </div>
                                                                             </a>
@@ -395,6 +377,8 @@
 <!--引入swiper组件库-->
 <script src="js/swiper.min.js"></script>
 
+<script src="js/logout.js"></script>
+
 <script>
     var swiper = new Swiper('.swiper-container', {
         autoplay: {
@@ -435,6 +419,14 @@
     window.onresize = function () {
         swiper.update();
     }
+
+</script>
+
+<script>
+    $("#saleUsername").text(sessionStorage.getItem("sale_username"))
+    $("#saleUsername2").text(sessionStorage.getItem("sale_username"))
+
+    $("#saleName").text(sessionStorage.getItem("sale_name"))
 </script>
 
 </body>

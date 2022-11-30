@@ -70,9 +70,15 @@ function submit_(type) {
         if (res.data.code === 20041) {
             // alert("登录成功！！！")
             if(type === "1"){
+                sessionStorage.setItem("mana_id",res.data.data.mana_id);
+                sessionStorage.setItem("mana_username",res.data.data.mana_username);
+                sessionStorage.setItem("mana_name",res.data.data.mana_name);
+
                 location.href = "index_manager.html";
             }else {
-                sessionStorage.setItem("sale_id",res.data.data);
+                sessionStorage.setItem("sale_id",res.data.data.sale_id);
+                sessionStorage.setItem("sale_username",res.data.data.sale_username);
+                sessionStorage.setItem("sale_name",res.data.data.sale_name);
                 location.href = "index_sale.html";
             }
         } else if (res.data.code === 20040) {

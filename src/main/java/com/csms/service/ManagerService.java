@@ -1,6 +1,7 @@
 package com.csms.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.csms.domain.Manager;
 import com.csms.domain.Orders;
 import com.csms.domain.Salesman;
 import com.csms.domain.User;
@@ -17,7 +18,7 @@ public interface ManagerService {
      * @param password
      * @return
      */
-    Boolean mana_login(String username, String password);
+    Manager mana_login(String username, String password);
 
     /**
      * 查询销售员信息数量

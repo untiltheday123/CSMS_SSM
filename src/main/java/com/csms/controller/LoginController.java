@@ -1,5 +1,6 @@
 package com.csms.controller;
 
+import com.csms.domain.Manager;
 import com.csms.domain.Salesman;
 import com.csms.service.ManagerService;
 import com.csms.service.SalesmanService;
@@ -106,14 +107,14 @@ public class LoginController {
 
     @GetMapping("/{username}/{password}/{type}")
     public Result login(@PathVariable String username,@PathVariable String password,@PathVariable int type){
-        Boolean flag = true;
+//        Boolean flag = true;
 //        管理员
         if(type==1) {
-            flag = managerService.mana_login(username, password);
-            return new Result(flag ? Code.GET_OK:Code.GET_ERR,flag);
+            Manager manager = managerService.mana_login(username, password);
+            return new Result(manager !=null ? Code.GET_OK:Code.GET_ERR,manager);
         }else{
-            String sale_id = salesmanService.sale_login(username, password);
-            return new Result(!"".equals(sale_id) ? Code.GET_OK:Code.GET_ERR,sale_id);
+            Salesman salesman = salesmanService.sale_login(username, password);
+            return new Result(salesman !=null ? Code.GET_OK:Code.GET_ERR,salesman);
         }
     }
 }

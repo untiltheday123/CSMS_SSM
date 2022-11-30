@@ -30,11 +30,11 @@
             <div class="mx-sidenav__content t-bg-primary">
                 <!-- Side Nav Brand  -->
                 <div class="mx-sidenav__brand">
-                    <a href="index.html" class="mx-sidenav__logo t-link sale">
+                    <a href="index_sale.html" class="mx-sidenav__logo t-link sale">
                         <!-- <img src="assets/img/logo-w.png" alt="Adminage" class="img-fluid mx-sidenav__logo-is"> -->
-                        管理员
+                        销售员
                     </a>
-                    <a href="index.html" class="t-link mx-sidenav__logo-sm">
+                    <a href="index_sale.html" class="t-link mx-sidenav__logo-sm">
                         <img src="assets/img/logo-w-sm.png" alt="Adminage" class="img-fluid mx-sidenav__logo-sm-is">
                         <!-- 销售员 -->
                     </a>
@@ -48,7 +48,7 @@
                     <nav class="mx-sidenav__menu">
                         <ul class="t-list mx-sidenav__menu-is">
                             <li class="mx-sidenav__menu-item">
-                                <a href="index_manager.html" class="mx-sidenav__menu-link">
+                                <a href="index_sale.html" class="mx-sidenav__menu-link">
                                     <span class="mx-sidenav__menu-icon t-mr-15">
                                         <span class='bx bx-category'></span>
                                     </span>
@@ -58,17 +58,7 @@
                                 </a>
                             </li>
                             <li class="mx-sidenav__menu-item">
-                                <a href="manager_salesman.html" class="mx-sidenav__menu-link">
-                                        <span class="mx-sidenav__menu-icon t-mr-15">
-                                            <i class='bx bxs-user-account'></i>
-                                        </span>
-                                    <span class="mx-sidenav__menu-text text-capitalize">
-                                            销售信息管理
-                                        </span>
-                                </a>
-                            </li>
-                            <li class="mx-sidenav__menu-item active-page">
-                                <a href="manager_client.html" class="mx-sidenav__menu-link">
+                                <a href="sale_client.html" class="mx-sidenav__menu-link">
                                         <span class="mx-sidenav__menu-icon t-mr-15">
                                             <i class='bx bxs-user-account'></i>
                                         </span>
@@ -78,7 +68,7 @@
                                 </a>
                             </li>
                             <li class="mx-sidenav__menu-item">
-                                <a href="manager_order.html" class="mx-sidenav__menu-link">
+                                <a href="sale_order.html" class="mx-sidenav__menu-link">
                                         <span class="mx-sidenav__menu-icon t-mr-15">
                                             <i class='bx bxs-user-account'></i>
                                         </span>
@@ -87,8 +77,8 @@
                                         </span>
                                 </a>
                             </li>
-                            <li class="mx-sidenav__menu-item">
-                                <a href="profile.html" class="mx-sidenav__menu-link">
+                            <li class="mx-sidenav__menu-item active-page">
+                                <a href="#" class="mx-sidenav__menu-link">
                                         <span class="mx-sidenav__menu-icon t-mr-15">
                                             <i class='bx bxs-user-account'></i>
                                         </span>
@@ -178,7 +168,7 @@
                                                                                      class="img-fluid w-100"/>
                                                                             </span>
                                                                         <span
-                                                                                class="d-none d-lg-inline-block t-ml-8" id="manaUsername">
+                                                                                class="d-none d-lg-inline-block t-ml-8" id="saleUsername">
                                                                                 admin
                                                                                 <span
                                                                                         class="t-ml-5 d-inline-block xsm-text"
@@ -192,11 +182,11 @@
                                                                             <a href="#"
                                                                                class="mx-author-menu__link text-capitalize sm-text">
                                                                                     <span
-                                                                                            class="text-capitalize fw-bold d-block t-pt-5" id="manaName">
+                                                                                            class="text-capitalize fw-bold d-block t-pt-5" id="saleName">
                                                                                         harun agrosz
                                                                                     </span>
                                                                                 <span
-                                                                                        class="text-capitalize xsm-text d-block mt-1" id="manaUsername2">
+                                                                                        class="text-capitalize xsm-text d-block mt-1" id="saleUsername2">
                                                                                         admin
                                                                                     </span>
                                                                             </a>
@@ -339,17 +329,18 @@
 <script src="js/index.js"></script>
 
 <script src="js/logout.js"></script>
+
 <script>
 
-    $("#right_content").load("manager_client_son.html");
+    $("#right_content").load("sale_profile_son.html");
 
 </script>
 
 <script>
-    $("#manaUsername").text(sessionStorage.getItem("mana_username"));
-    $("#manaUsername2").text(sessionStorage.getItem("mana_username"));
+    $("#saleUsername").text(sessionStorage.getItem("sale_username"))
+    $("#saleUsername2").text(sessionStorage.getItem("sale_username"))
 
-    $("#manaName").text(sessionStorage.getItem("mana_name"));
+    $("#saleName").text(sessionStorage.getItem("sale_name"))
 </script>
 </body>
 </html>

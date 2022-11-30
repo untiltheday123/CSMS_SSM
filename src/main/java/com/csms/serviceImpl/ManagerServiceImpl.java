@@ -7,6 +7,7 @@ import com.csms.dao.ManagerDao;
 import com.csms.dao.SearchOrderDao;
 import com.csms.dao.SearchSalesmanDao;
 import com.csms.dao.SearchUserDao;
+import com.csms.domain.Manager;
 import com.csms.domain.Orders;
 import com.csms.domain.Salesman;
 import com.csms.domain.User;
@@ -44,10 +45,9 @@ public class ManagerServiceImpl implements ManagerService {
 //    }
 
     @Override
-    public Boolean mana_login(String username, String password) {
-        int num = managerDao.selectUserByUsernameAndUserPwd(username,password);
+    public Manager mana_login(String username, String password) {
 //        return managerDao.selectUserByUsernameAndUserPwd(username,password);
-        return num > 0;
+        return managerDao.selectUserByUsernameAndUserPwd(username,password);
     }
 
     @Override

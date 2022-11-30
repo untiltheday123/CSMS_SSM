@@ -1,9 +1,12 @@
 package com.csms.serviceImpl;//package com.csms.service.impl;
 
 import com.csms.dao.SalesmanDao;
+import com.csms.domain.Salesman;
 import com.csms.service.SalesmanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 //
 //import com.csms.dao.SalesmanDao;
@@ -25,7 +28,7 @@ public class SalesmanServiceImpl implements SalesmanService {
 
 
     @Override
-    public String sale_login(String username, String userpwd) {
+    public Salesman sale_login(String username, String userpwd) {
         return salesmanDao.selectUserByUsernameAndUserPwd(username, userpwd);
     }
 //

@@ -1,5 +1,6 @@
 package com.csms.dao;
 
+import com.csms.domain.Manager;
 import com.csms.domain.Salesman;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -15,12 +16,12 @@ public interface ManagerDao {
 
 //    void save1();
 
-//    @Select("select count(*) from manager where mana_username = #{username} and mana_password = #{userpwd}")
-//    int selectUserByUsernameAndUserPwd(@Param("username") String username, @Param("userpwd") String userpwd);
+//    @Select("select count(*) from manager where mana_username = #{username} and mana_password = #{password}")
+//    int selectUserByUsernameAndUserPwd(@Param("username") String username, @Param("password") String password);
 
 
-    @Select("select count(*) from manager where mana_username = #{username} and mana_password = #{userpwd}")
-    int selectUserByUsernameAndUserPwd(@Param("username") String username, @Param("userpwd") String userpwd);
+    @Select("select * from manager where mana_username = #{username} and mana_password = #{password}")
+    Manager selectUserByUsernameAndUserPwd(@Param("username") String username, @Param("password") String password);
 
     @Select("select count(*) from salesman")
     int querySalesman();
