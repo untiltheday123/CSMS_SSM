@@ -81,7 +81,6 @@ public class ManagerServiceImpl implements ManagerService {
         return page;
     }
 
-
     @Override
     public IPage<User> queryClientCondition(int startPage, User user) {
         LambdaQueryWrapper<User> lqw = new LambdaQueryWrapper<User>();
